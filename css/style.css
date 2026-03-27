@@ -216,3 +216,29 @@ input[type="color"] {
     cursor: pointer;
     padding: 2px;
 }
+
+.source-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+.source-link:hover {
+    color: #00d2ff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.source-link svg {
+    opacity: 0.8;
+}
