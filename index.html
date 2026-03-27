@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri Tri Lab</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" title="Réduire le panneau">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    </button>
+
+    <div id="sidebar">
+        <h1>Tri Tri Lab</h1>
+        
+        <div class="control-group">
+            <label for="template-select">Modèles</label>
+            <select id="template-select">
+                <option value="" disabled selected>Choisir un modèle...</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="standard-input">Texte Standard (Français)</label>
+            <input type="text" id="standard-input" placeholder="Bonjour tout le monde">
+        </div>
+
+        <div class="control-group">
+            <label for="phonetic-input">Texte Phonétique</label>
+            <textarea id="phonetic-input" placeholder="bi-bi-bi">il-na-rèt-gèr-de-bwar-kar-sa-ka-tja-sa-zhc-li-ka-tja</textarea>
+            <div id="syllable-display" class="syllable-display"></div>
+        </div>
+
+        <h2>Mode de Tracé</h2>
+        <div class="mode-selector">
+            <button class="mode-btn active" data-mode="script">Script</button>
+            <button class="mode-btn" data-mode="spline">Spline</button>
+            <button class="mode-btn" data-mode="bspline">B-Spline</button>
+        </div>
+
+        <h2>Propriétés Globales</h2>
+        <div class="control-group">
+            <label>Rayon / Tension <span id="val-tension">40</span></label>
+            <input type="range" id="slider-tension" min="0" max="100" value="40">
+        </div>
+
+        <div class="control-group">
+            <label>Épaisseur <span id="val-weight">5</span></label>
+            <input type="range" id="slider-weight" min="1" max="20" value="5">
+        </div>
+
+        <div class="control-group">
+            <label>Taille <span id="val-size">60</span></label>
+            <input type="range" id="slider-size" min="10" max="300" value="60">
+        </div>
+
+        <div class="control-group">
+            <label>Espacement <span id="val-spacing">150</span></label>
+            <input type="range" id="slider-spacing" min="0" max="500" value="150">
+        </div>
+
+        <div class="control-group">
+            <label>Hauteur de Ligne <span id="val-lineheight">250</span></label>
+            <input type="range" id="slider-lineheight" min="100" max="1000" value="250">
+        </div>
+
+        <div class="control-group">
+            <label>Couleur <span id="val-color">#00d2ff</span></label>
+            <input type="color" id="slider-color" value="#00d2ff" style="height: 30px; padding: 2px;">
+        </div>
+
+        <div id="spline-options" style="display: none;">
+            <h2>Mathématiques des Courbes</h2>
+            <div class="control-group">
+                <label>Lissage (Steps) <span id="val-steps">20</span></label>
+                <input type="range" id="slider-steps" min="5" max="100" value="20">
+            </div>
+            <div id="opt-alpha" class="control-group">
+                <label>Alpha (Catmull-Rom) <span id="val-alpha">0.5</span></label>
+                <input type="range" id="slider-alpha" min="0" max="100" value="50">
+                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #666;">
+                    <span>Uniforme</span>
+                    <span>Centripète</span>
+                    <span>Chordal</span>
+                </div>
+            </div>
+            <div id="opt-degree" class="control-group">
+                <label>Degré (B-Spline) <span id="val-degree">3</span></label>
+                <input type="range" id="slider-degree" min="2" max="5" value="3">
+            </div>
+        </div>
+
+        <h2>Affichage</h2>
+        <div class="toggle-group">
+            <button class="toggle-btn" id="toggle-dots">Points d'Ancre</button>
+            <button class="toggle-btn" id="toggle-path">Chemin Guide</button>
+            <button class="toggle-btn" id="toggle-grid">Grille</button>
+            <button class="toggle-btn" id="toggle-values">Valeurs</button>
+            <button class="toggle-btn active" id="toggle-editor">Mode Éditeur</button>
+        </div>
+    </div>
+
+    <div id="main">
+        <button id="fit-btn" title="Ajuster au contenu">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+        </button>
+        <div class="canvas-container" id="canvas-container">
+            <canvas id="tritri-canvas"></canvas>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/presets.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
